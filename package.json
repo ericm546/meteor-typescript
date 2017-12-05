@@ -14,7 +14,9 @@
     "compilation"
   ],
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "babel . -d dist --ignore node_modules,tests,dist,coverage",
     "test:run": "tests/run.sh",
@@ -33,7 +35,7 @@
     "lru-cache": "^4.1.1",
     "object-sizeof": "^1.2.0",
     "random-js": "^1.0.3",
-    "typescript": "2.5.3",
+    "typescript": "^2.6.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
