@@ -30,7 +30,7 @@ export default class CompileService {
     }
 
     const result = this.service.getEmitOutput(filePath);
-
+    
     let code, sourceMap;
     _.each(result.outputFiles, function(file) {
       if (normalizePath(filePath) !==
@@ -90,10 +90,10 @@ export default class CompileService {
   }
 
   getDiagnostics(filePath) {
-    return createDiagnostics(
-      this.service.getSyntacticDiagnostics(filePath),
-      this.service.getSemanticDiagnostics(filePath)
-    );
+    return {    
+      syntacticErrors: [],
+      semanticErrors: [],
+    }
   }
 
   rootifyPaths(code, mappings) {
@@ -131,7 +131,7 @@ export default class CompileService {
 export function createCSResult(filePath, result) {
   const props = [
     "code", "sourceMap", "version",
-    "isExternal", "dependencies", "diagnostics",
+    "isExternal", "dependencies",
   ];
   const len = props.length;
   for (let i = 0; i < len; i++) {
@@ -142,7 +142,7 @@ export function createCSResult(filePath, result) {
     }
   }
   result.diagnostics = new TsDiagnostics(
-    result.diagnostics);
+   result.diagnostics);
 
   return new CSResult(result);
 }

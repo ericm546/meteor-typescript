@@ -188,18 +188,17 @@ export class TSBuild {
       // First case: file is not changed but contains unresolved modules
       // error from previous build (some node modules might have installed).
       // Second case: dependency modules or typings have changed.
-      const csResult = createCSResult(filePath, cacheResult);
-      const tsDiag = csResult.diagnostics;
-      const unresolved = tsDiag.hasUnresolvedModules();
-      if (unresolved || refsChange !== RefsChangeType.NONE || isTypingsChanged) {
-        logger.debug("diagnostics re-evaluation: %s", filePath);
-        const pdiag = logger.newProfiler("diags update");
-        csResult.upDiagnostics(
-          compileService.getDiagnostics(filePath));
-        pdiag.end();
-        return csResult;
-      }
-
+      // const csResult = createCSResult(filePath, cacheResult);
+      // const tsDiag = csResult.diagnostics;
+      // const unresolved = tsDiag.hasUnresolvedModules();
+      // if (unresolved || refsChange !== RefsChangeType.NONE || isTypingsChanged) {
+      //   logger.debug("diagnostics re-evaluation: %s", filePath);
+      //   const pdiag = logger.newProfiler("diags update");
+      //   csResult.upDiagnostics(
+      //     compileService.getDiagnostics(filePath));
+      //   pdiag.end();
+      //   return csResult;
+      // }
       // Cached result is up to date, no action required.
       logger.debug("file from cached: %s", filePath);
       return null;
